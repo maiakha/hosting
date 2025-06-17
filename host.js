@@ -843,7 +843,12 @@ window.addEventListener('wheel', (event) => {
     if (isAnimating || !canScroll) return;
 
     const target = event.target;
-    if (target.closest('textarea')) return;
+    if (
+        target.closest('textarea, input, [contenteditable="true"]') ||
+        document.activeElement.matches('textarea, input, [contenteditable="true"]')
+    ) {
+        return;
+    }
 
     wheelDelta += Math.abs(event.deltaY);
     let timeset = 700;
@@ -885,7 +890,12 @@ window.addEventListener('touchmove', (event) => {
     if (isAnimating || !canScroll) return;
 
     const target = event.target;
-    if (target.closest('textarea')) return;
+    if (
+        target.closest('textarea, input, [contenteditable="true"]') ||
+        document.activeElement.matches('textarea, input, [contenteditable="true"]')
+    ) {
+        return;
+    }
     
     touchEndY = event.touches[0].clientY;
     const touchDelta = Math.abs(touchEndY - touchStartY);
