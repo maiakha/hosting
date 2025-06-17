@@ -1,5 +1,5 @@
 // MAI ANH KHA
-var kha = 1;
+var kha = 2;
 function onMainLoaded() {
 
 var vh;
