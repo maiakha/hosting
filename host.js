@@ -1,5 +1,3 @@
-// MAI ANH KHA
-var kha = 3;
 function onMainLoaded() {
 
 var vh;
@@ -845,11 +843,11 @@ window.addEventListener('wheel', (event) => {
     if (isAnimating || !canScroll) return;
 
     const target = event.target;
-    if (
-        target.closest('textarea, input, [contenteditable="true"]') ||
-        document.activeElement.matches('textarea, input, [contenteditable="true"]')
-    ) {
-        return;
+    if (target.closest('textarea')) return;
+
+    const active = document.activeElement;
+    if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA')) {
+        active.blur();
     }
 
     wheelDelta += Math.abs(event.deltaY);
@@ -892,11 +890,11 @@ window.addEventListener('touchmove', (event) => {
     if (isAnimating || !canScroll) return;
 
     const target = event.target;
-    if (
-        target.closest('textarea, input, [contenteditable="true"]') ||
-        document.activeElement.matches('textarea, input, [contenteditable="true"]')
-    ) {
-        return;
+    if (target.closest('textarea')) return;
+
+    const active = document.activeElement;
+    if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA')) {
+        active.blur();
     }
     
     touchEndY = event.touches[0].clientY;
